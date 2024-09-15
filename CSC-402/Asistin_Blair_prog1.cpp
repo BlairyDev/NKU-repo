@@ -1,6 +1,6 @@
 //Name: Blair Asistin
 //CSC 402 Advanced Programming Methods
-//Program Description:
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -26,8 +26,9 @@ int main() {
     cout << "Enter file name:";
     cin >> inputFileName;
 
-    inputFilePath += inputFileName;
+    inputFilePath += inputFileName; //Concatenates inputFilePath and inputFileName
     ifstream inf (inputFilePath);
+
 
     if(!inf) {
         cout << "Error opening file " << inputFilePath;
@@ -59,6 +60,7 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
 
         //Commands to be selected depending on the currentCommand variable
         if(currentCommand == "PUSH"){
+
             CPPStack.push_back(currentNumber); //pushes an element in CPPStack
 
             push(ptr_CStack, size, numelts, currentNumber); //pushes an element in CStack
@@ -85,12 +87,14 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
             }
 
             top(ptr_CStack, numelts);//Prints the top element of CStack
+
         }
     }
 
+    cout << endl;
 
+    //Prints CPPStack
     cout << "CPPStack" << endl;
-
     if(CPPStack.empty()) {
         cout << "STACK IS EMPTY" << endl;
     }
@@ -100,14 +104,16 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
         }
     }
 
+    cout << endl;
+
+    //Prints CStack
     cout << "CSTACK" << endl;
-    if(numelts-1 == -1) {
+    if(numelts == 0) {
         cout << "STACK IS EMPTY";
     }
     else{
-
-        for(int i = numelts; i > 0; i--) {
-            cout << *(ptr_CStack + i) << endl;
+        for(int i = numelts-1; i >= 0; i--) {
+            cout << ptr_CStack[i] << endl;
         }
     }
 
@@ -129,13 +135,12 @@ void push(int* ptr_CStack, int size, int &numelts, int currentNumber) {
 //Pop implementation for CStack
 void pop(int* ptr_CStack, int &numelts) {
 
-    int temp = numelts;
-
-    if(temp-1 == -1) {
-        cout << "NO POP - STACK IS EMPTY" << endl;
+    if(numelts > 0) {
+        ptr_CStack[numelts-1] = 0;
+        numelts--;
     }
     else {
-        ptr_CStack[numelts--];
+        cout << "NO POP - STACK IS EMPTY" << endl;
     }
 
 }
@@ -143,11 +148,11 @@ void pop(int* ptr_CStack, int &numelts) {
 //Top implementation for the CStack
 void top(int* ptr_CStack, int numelts) {
 
-    if(numelts-1 == -1) {
-        cout << "NO TOP" << endl;
+    if(numelts > 0) {
+        cout << ptr_CStack[numelts-1] << endl;
     }
     else {
-        cout << *(ptr_CStack + numelts-1) << endl;
+        cout << "NO TOP" << endl;
     }
 
 }
