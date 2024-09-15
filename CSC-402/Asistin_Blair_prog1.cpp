@@ -9,10 +9,10 @@
 using namespace std;
 
 //Function Prototypes
-void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size);
-void push(int* ptr_CStack, int size, int &numelts, int currentNumber);
-void pop(int* ptr_CStack, int &numelts);
-void top(int* ptr_CStack, int numelts);
+void processData(ifstream& inf, vector<int>& CPPStack, int* CStack, int size);
+void push(int* CStack, int size, int &numelts, int currentNumber);
+void pop(int* CStack, int &numelts);
+void top(int* CStack, int numelts);
 
 int main() {
     string inputFilePath;
@@ -46,7 +46,7 @@ int main() {
 }
 
 //Determines what command to use and execute
-void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size) {
+void processData(ifstream& inf, vector<int>& CPPStack, int* CStack, int size) {
 
     int numelts = 0; //Keeps track of the current index in CStack
     string currentCommand;
@@ -60,7 +60,7 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
 
             CPPStack.push_back(currentNumber); //pushes an element in CPPStack
 
-            push(ptr_CStack, size, numelts, currentNumber); //pushes an element in CStack
+            push(CStack, size, numelts, currentNumber); //pushes an element in CStack
         }
         else if(currentCommand == "POP") {
 
@@ -71,7 +71,7 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
                 CPPStack.pop_back();//pops an element in CPPStack
             }
 
-            pop(ptr_CStack, numelts); //pops an element in CStack
+            pop(CStack, numelts); //pops an element in CStack
 
         }
         else if(currentCommand == "TOP") {
@@ -83,7 +83,7 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
                 cout << CPPStack.at(CPPStack.size()-1)<< endl;//Prints the top element of CPPStack
             }
 
-            top(ptr_CStack, numelts);//Prints the top element of CStack
+            top(CStack, numelts);//Prints the top element of CStack
 
         }
     }
@@ -110,17 +110,17 @@ void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size
     }
     else{
         for(int i = numelts-1; i >= 0; i--) {
-            cout << ptr_CStack[i] << endl;
+            cout << CStack[i] << endl;
         }
     }
 
 }
 
 //Push implementation for the CStack
-void push(int* ptr_CStack, int size, int &numelts, int currentNumber) {
+void push(int* CStack, int size, int &numelts, int currentNumber) {
 
     if(numelts < size) {
-        *(ptr_CStack+numelts) = currentNumber; //adding current size and CStack can obtain current index of CStack
+        *(CStack+numelts) = currentNumber; //adding current size and CStack can obtain current index of CStack
         numelts++;
     }
     else {
@@ -130,10 +130,10 @@ void push(int* ptr_CStack, int size, int &numelts, int currentNumber) {
 }
 
 //Pop implementation for CStack
-void pop(int* ptr_CStack, int &numelts) {
+void pop(int* CStack, int &numelts) {
 
     if(numelts > 0) {
-        ptr_CStack[numelts-1] = 0;
+        CStack[numelts-1] = 0;
         numelts--;
     }
     else {
@@ -143,10 +143,10 @@ void pop(int* ptr_CStack, int &numelts) {
 }
 
 //Top implementation for the CStack
-void top(int* ptr_CStack, int numelts) {
+void top(int* CStack, int numelts) {
 
     if(numelts > 0) {
-        cout << ptr_CStack[numelts-1] << endl;
+        cout << CStack[numelts-1] << endl;
     }
     else {
         cout << "NO TOP" << endl;
