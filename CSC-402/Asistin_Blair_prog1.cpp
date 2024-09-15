@@ -9,27 +9,24 @@
 using namespace std;
 
 //Function Prototypes
-void processData(ifstream& inf, vector<int>& CPPStack, int* CStack, int size);
-void push(int*CStack, int size, int &numelts, int currentNumber);
-void pop(int*CStack, int &numelts);
-void top(int*CStack, int numelts);
+void processData(ifstream& inf, vector<int>& CPPStack, int* ptr_CStack, int size);
+void push(int* ptr_CStack, int size, int &numelts, int currentNumber);
+void pop(int* ptr_CStack, int &numelts);
+void top(int* ptr_CStack, int numelts);
 
 int main() {
-
-    string inputFilePath = "/home/blairasistin/CLionProjects/Asistin_Blair_prog1.cpp/"; //If file cannot be found change path
-    string inputFileName;
+    string inputFilePath;
     int* CStack;
     vector<int> CPPStack;
     int size;
 
-    //Asks the user for the file name
-    cout << "Enter file name:";
-    cin >> inputFileName;
+    //Asks the user for path of the file
+    cout << "Enter path of the input file:"; // (e.g input): /home/blairasistin/CLionProjects/Asistin_Blair_prog1.cpp/t1.in
+    cin >> inputFilePath;
 
-    inputFilePath += inputFileName; //Concatenates inputFilePath and inputFileName
     ifstream inf (inputFilePath);
 
-
+    //Checks whether file successfully opened or not
     if(!inf) {
         cout << "Error opening file " << inputFilePath;
         return -1;
