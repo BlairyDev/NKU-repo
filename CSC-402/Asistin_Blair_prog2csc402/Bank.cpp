@@ -7,6 +7,13 @@ using namespace std;
 
 Account& Bank::findAcct(string id, string pin) {
 
+    for(int i = 0; i <bank.size()-1; i++) {
+        if(bank[i].getAccountID() == id && bank[i].getAccountPIN() == pin) {
+            return bank[i];
+        }
+    }
+
+    return dummyAccount;
 }
 void Bank::addAcct(Account& acct) {
 
@@ -27,7 +34,5 @@ void Bank::loadAccounts(ifstream& inf) {
         addAcct(acct);
 
     }
-
-
 
 }

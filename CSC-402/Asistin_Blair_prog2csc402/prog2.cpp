@@ -4,22 +4,10 @@
 #include <vector>
 #include "Account.h"
 #include "Bank.h"
+#include "ATM.h"
 using namespace std;
 
 int main() {
-
-
-    // Account account1("blair", "test", 203);
-    //
-    // //cout << account1.getAccountBalance() << endl;
-    //
-    // account1.printBalance();
-    //
-    // account1.Deposit(100);
-    // cout << account1.getAccountBalance() << endl;
-    //
-    // account1.Withdraw(200);
-    // cout << account1.getAccountBalance() << endl;;
 
     Bank bk;
 
@@ -36,12 +24,9 @@ int main() {
 
     bk.loadAccounts(inf);
 
+    ATM atm(bk);
 
-    // string s;
-    //
-    // while(getline(inf, s)) {
-    //     cout << s << endl;
-    // }
+    int result = atm.start();
 
     inf.close();
 
