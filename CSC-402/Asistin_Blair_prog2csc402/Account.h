@@ -1,6 +1,6 @@
-//
-// Created by blairasistin on 9/17/24.
-//
+//Name: Blair Asistin
+//Course: CSC 402 Advanced Programming Methods
+
 
 #pragma once
 #include <string>
@@ -13,21 +13,24 @@ protected:
     double accountBalance;
 
 public:
-    Account();
-    Account(const string &accountID, const string &accountPIN, const double &accountBalance);
+    Account(); //Default Constructor
+    Account(const string &accountID, const string &accountPIN, const double &accountBalance);//Constructor that stores accountID, accountPIN, and accountBalance
 
+    //Getters and Setters for AccountID
     string getAccountID();
     void setAccountID(const string &accountID);
 
+    //Getters and Setters for AccountPIN
     string getAccountPIN();
     void setAccountPIN(const string &accountPIN);
 
+    //Getters and Setters for AccountBalance
     double getAccountBalance();
     void setAccountBalance(const double &accountBalance);
 
-    void printBalance();
-    void Deposit(double amt);
-    void Withdraw(double amt);
+    void printBalance();//Prints the Balance of the account
+    void Deposit(double amt);//Deposits the Balance of the account
+    void Withdraw(double amt);//Withdraw the Balance of the account
 
 };
 
